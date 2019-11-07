@@ -28,6 +28,7 @@ public abstract class BaseUnit : MonoBehaviour
     }
 
     // UnitSettings will feed initial values to this Unit's variables
+    [SerializeField]
     protected UnitSettings settings;
 
     void Awake()

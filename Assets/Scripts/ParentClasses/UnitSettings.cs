@@ -12,23 +12,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Unit Settings")]
 public class UnitSettings : ScriptableObject
 {
     // These variables are READ-ONLY and used ONLY for initialization
+    [SerializeField]
     private int _maxHealth;         // Maximum health of this unit
+    [SerializeField]
     private int _damage;            // Damage that this unit 
-    private int _speed;             // Movement at units per second
+    [SerializeField]
+    private int _speed;             // Movement at units per secon
+    [SerializeField]
     private int _maxLifetime;       // Maximum lifetime (in seconds) of this unit
 
     public int maxHealth {
         get { return _maxHealth; }
-    }         
+    }
     public int damage {
         get { return _damage; }
-    }          
+    }
     public int speed {
         get { return _speed; }
-    }           
+    }
     public int maxLifetime {
         get { return _maxLifetime; }
     }       
