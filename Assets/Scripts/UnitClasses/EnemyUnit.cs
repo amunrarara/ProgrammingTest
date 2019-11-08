@@ -6,7 +6,6 @@
 // Thank you dearly! - Warm regards, Acea Spades
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyUnit : BaseUnit
@@ -19,27 +18,18 @@ public class EnemyUnit : BaseUnit
         }
     }
 
-    private void Start()
+    void Start()
     {
         // Start the lifetime countdown
         StartCoroutine(StartCountdown());
     }
 
-    private void Update()
+    void Update()
     {
         // If currentLifetime reaches 0 (or less, for some reason), then destroy this Unit
         if (this._currentLifetime <= 0)
         {
             Die();
-        }
-    }
-
-    // Called any time a collision occurs
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            TakeDamage(collision.gameObject.GetComponent<UnitSettings>().damage);
         }
     }
 }

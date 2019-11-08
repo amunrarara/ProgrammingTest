@@ -5,17 +5,20 @@
 
 // Thank you dearly! - Warm regards, Acea Spades
 
+// CameraController.cs
+// A very simple camera follow script whick moves along with the player's movement, from a set distance away
+
 using UnityEngine;
 
-public class Player : BaseUnit
+public class CameraController : MonoBehaviour
 {
-    // Called any time a collision occurs
-    public void OnCollisionEnter(Collision collision)
-    {
+    [SerializeField]
+    private Transform player;
+    [SerializeField]
+    private Vector3 offset;
 
-        if (collision.gameObject.tag == "Enemy")
-        {
-            TakeDamage(collision.gameObject.GetComponent<BaseUnit>().damage);
-        }
+    void LateUpdate()
+    {
+        transform.position = player.transform.position + offset;
     }
 }

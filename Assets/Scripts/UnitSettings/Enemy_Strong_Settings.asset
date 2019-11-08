@@ -15,4 +15,4 @@ MonoBehaviour:
   _maxHealth: 0
   _damage: 3
   _speed: 3
-  _maxLifetime: 60
+  _maxLifetime: 15

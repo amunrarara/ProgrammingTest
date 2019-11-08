@@ -8,8 +8,6 @@
 // BaseUnit.cs
 // The superparent of all other unit types in the project
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseUnit : MonoBehaviour
@@ -18,7 +16,6 @@ public abstract class BaseUnit : MonoBehaviour
     protected int _maxHealth;         // Maximum health of this unit
     protected int _currentHealth;     // When _currentHealth == 0, the unit is destroyed
     protected int _damage;            // Damage that this unit 
-    protected int _speed;             // Movement at units per second
     protected int _maxLifetime;       // Maximum lifetime (in seconds) of this unit
     protected int _currentLifetime;   // When _currentLifetime == 0, the unit is destroyed
 
@@ -27,23 +24,25 @@ public abstract class BaseUnit : MonoBehaviour
         get { return _damage; }
     }
 
-    // UnitSettings will feed initial values to this Unit's variables
     [SerializeField]
-    protected UnitSettings settings;
+    protected UnitSettings _settings; // UnitSettings will feed initial values to this Unit's variables
+
+    public UnitSettings settings { get { return _settings; } }
 
     void Awake()
     {
-        // If there is no UnitSettings assigned, then throw an error to the Console
-        if (!settings){
-            Debug.LogError("ERROR: This Unit does not have UnitSettings!");
+        // If there is no UnitSettings assigned, try to find them. If there are still none, throw an error
+        if (!_settings)
+        {
+            Debug.LogError("ERROR: " + this.gameObject + " does not have UnitSettings!");
         }
 
         // If there are UnitSettings, initalize this Unit's variables with UnitSettings values
-        else {
+        else
+        {
             this._maxHealth = settings.maxHealth;
             this._currentHealth = this._maxHealth;
             this._damage = settings.damage;
-            this._speed = settings.speed;
             this._maxLifetime = settings.maxLifetime;
             this._currentLifetime = this._maxLifetime;
         }
