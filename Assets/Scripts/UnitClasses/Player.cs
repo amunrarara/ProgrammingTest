@@ -12,7 +12,6 @@ public class Player : BaseUnit
     // Called any time a collision occurs
     public void OnCollisionEnter(Collision collision)
     {
-
         if (collision.gameObject.tag == "Enemy")
         {
             TakeDamage(collision.gameObject.GetComponent<BaseUnit>().damage);

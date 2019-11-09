@@ -62,17 +62,17 @@ public class SpawnController : MonoBehaviour
         if (counter < 5)
         {
             // Spawn a weak mob
-            // Step : Create an empty GameObject to be parent to the mob
-            GameObject mob = new GameObject("WeakMob");
-            // Step : Create a LifetimeBar above the mob
+            // Step : Instantiate the Mob parent at a random point near the Player
+            Vector3 mobPosition = RandomEnemyPosition(player.transform.position);
+            // Generate a Quaternion for rotation
+            Quaternion rotation = player.transform.rotation;
+            GameObject mob = Instantiate(Resources.Load("Mob_Weak"), mobPosition, rotation) as GameObject;
             // Step : Instantiate a random number of enemies (3-5) at random points near the Player within minDistanceFromPlayer and maxDistanceFromPlayer, as children of the mob boss (heh heh)
             int count = 0;
             int rand = Random.Range(3,5);
             while (count < rand) {
-                // Generate a random point near the Player
-                Vector3 randPos = RandomEnemyPosition();
-                // Generate a Quaternion for rotation
-                Quaternion rotation = player.transform.rotation;
+                // Generate a random point near the Mob boss
+                Vector3 randPos = RandomEnemyPosition(mobPosition);
                 // Instantiate the enemy unit as a child of WeakMob
                 GameObject newEnemy = Instantiate(Resources.Load("Enemy_Weak"), randPos, rotation, mob.transform) as GameObject;
                 // Increase the counter by 1
@@ -91,7 +91,7 @@ public class SpawnController : MonoBehaviour
         secondsSinceLastSpawn = 0;
     }
 
-    Vector3 RandomEnemyPosition() {
+    Vector3 RandomEnemyPosition(Vector3 target) {
         // Generate a random point near the Player
         float randX = Random.Range(maxDistanceFromPlayer * -1, maxDistanceFromPlayer);
         float randZ = Random.Range(maxDistanceFromPlayer * -1, maxDistanceFromPlayer);
@@ -105,7 +105,7 @@ public class SpawnController : MonoBehaviour
         // Generate offset from the player position
         Vector3 offset = new Vector3(randX, 0f, randZ);
         // Generate the new enemy's position
-        Vector3 randPos = player.transform.position + offset;
+        Vector3 randPos = target + offset;
 
         return randPos;
     }

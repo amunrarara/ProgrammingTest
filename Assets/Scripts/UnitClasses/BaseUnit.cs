@@ -19,10 +19,9 @@ public abstract class BaseUnit : MonoBehaviour
     protected int _maxLifetime;       // Maximum lifetime (in seconds) of this unit
     protected int _currentLifetime;   // When _currentLifetime == 0, the unit is destroyed
 
-    public int damage
-    {
-        get { return _damage; }
-    }
+    public int damage{ get { return _damage; } }
+    public int currentHealth { get { return _currentHealth; } }
+    public int currentLifetime { get { return _currentLifetime; } }
 
     [SerializeField]
     protected UnitSettings _settings; // UnitSettings will feed initial values to this Unit's variables
