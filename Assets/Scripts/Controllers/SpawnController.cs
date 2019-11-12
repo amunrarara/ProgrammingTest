@@ -116,6 +116,7 @@ public class SpawnController : MonoBehaviour
         
         // After the mob is spawned, set secondsSinceLastSpawn to 0
         secondsSinceLastSpawn = 0;
+        mobCounter++;
     }
 
     Vector3 RandomEnemyPosition(Vector3 target) {
