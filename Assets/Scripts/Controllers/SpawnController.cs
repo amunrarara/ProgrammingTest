@@ -28,7 +28,6 @@ public class SpawnController : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             this.secondsSinceLastSpawn++;
-            Debug.Log(secondsSinceLastSpawn);
         }
     }
 
@@ -57,37 +56,65 @@ public class SpawnController : MonoBehaviour
         }
     }
 
-    // A Mob is spawned at a random distance from the Player
+    // A mob of Enemies are spawned at a random distance from the Player
     void SpawnMob(int counter) {
-        if (counter < 5)
-        {
-            // Spawn a weak mob
-            // Step : Instantiate the Mob parent at a random point near the Player
-            Vector3 mobPosition = RandomEnemyPosition(player.transform.position);
-            // Generate a Quaternion for rotation
-            Quaternion rotation = player.transform.rotation;
-            GameObject mob = Instantiate(Resources.Load("Mob_Weak"), mobPosition, rotation) as GameObject;
-            // Step : Instantiate a random number of enemies (3-5) at random points near the Player within minDistanceFromPlayer and maxDistanceFromPlayer, as children of the mob boss (heh heh)
-            int count = 0;
-            int rand = Random.Range(3,5);
-            while (count < rand) {
-                // Generate a random point near the Mob boss
-                Vector3 randPos = RandomEnemyPosition(mobPosition);
-                // Instantiate the enemy unit as a child of WeakMob
-                GameObject newEnemy = Instantiate(Resources.Load("Enemy_Weak"), randPos, rotation, mob.transform) as GameObject;
-                // Increase the counter by 1
-                count++;
-            }
-        }
-        else if (counter < 10)
-        {
-            // Spawn a mid-strength mob
-        }
-        else {
-            // Spawn a strong mob
-        }
 
-        // Reset secondsSinceLastSpawn to 0
+        switch (counter)
+        {
+            case int n when (counter < 5):
+                int count1 = 0;
+                int rand1 = Random.Range(3, 5);
+                while (count1 < rand1)
+                {
+                    // Generate a random point near the Mob boss
+                    Vector3 randPos = RandomEnemyPosition(player.transform.position);
+                    // Generate a Quaternion for rotation
+                    Quaternion rotation = player.transform.rotation;
+                    // Instantiate the enemy unit as a child of WeakMob
+                    GameObject newEnemy = Instantiate(Resources.Load("Enemy_Weak"), randPos, rotation) as GameObject;
+                    // Increase the counter by 1
+                    count1++;
+                }
+                break;
+
+            case int n when (counter < 10):
+                {
+                    int count2 = 0;
+                    int rand2 = Random.Range(3, 5);
+                    while (count2 < rand2)
+                    {
+                        // Generate a random point near the Mob boss
+                        Vector3 randPos = RandomEnemyPosition(player.transform.position);
+                        // Generate a Quaternion for rotation
+                        Quaternion rotation = player.transform.rotation;
+                        // Instantiate the enemy unit as a child of WeakMob
+                        GameObject newEnemy = Instantiate(Resources.Load("Enemy_Mid"), randPos, rotation) as GameObject;
+                        // Increase the counter by 1
+                        count2++;
+                    }
+                    break;
+                }
+
+            case int n when (counter >= 10):
+                {
+                    int count2 = 0;
+                    int rand2 = Random.Range(3, 5);
+                    while (count2 < rand2)
+                    {
+                        // Generate a random point near the Mob boss
+                        Vector3 randPos = RandomEnemyPosition(player.transform.position);
+                        // Generate a Quaternion for rotation
+                        Quaternion rotation = player.transform.rotation;
+                        // Instantiate the enemy unit as a child of WeakMob
+                        GameObject newEnemy = Instantiate(Resources.Load("Enemy_Strong"), randPos, rotation) as GameObject;
+                        // Increase the counter by 1
+                        count2++;
+                    }
+                    break;
+                }
+        }
+        
+        // After the mob is spawned, set secondsSinceLastSpawn to 0
         secondsSinceLastSpawn = 0;
     }
 

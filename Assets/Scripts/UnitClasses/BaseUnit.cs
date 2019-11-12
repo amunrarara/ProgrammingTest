@@ -22,6 +22,8 @@ public abstract class BaseUnit : MonoBehaviour
     public int damage{ get { return _damage; } }
     public int currentHealth { get { return _currentHealth; } }
     public int currentLifetime { get { return _currentLifetime; } }
+    public int maxHealth { get { return _maxHealth; } }
+    public int maxLifetime { get { return _maxLifetime; } }
 
     [SerializeField]
     protected UnitSettings _settings; // UnitSettings will feed initial values to this Unit's variables
@@ -44,19 +46,6 @@ public abstract class BaseUnit : MonoBehaviour
             this._damage = settings.damage;
             this._maxLifetime = settings.maxLifetime;
             this._currentLifetime = this._maxLifetime;
-        }
-    }
-
-    // Called when this Unit has been damaged by another Unit
-    public virtual void TakeDamage(int damage) {
-        // If this Unit's current health is greater than the damage it's receiving, then subtract that damage from currentHealth...
-        if (this._currentHealth > damage)
-        {
-            this._currentHealth -= damage;
-        }
-        // ... otherwise, destroy this Unit
-        else {
-            Die();
         }
     }
 

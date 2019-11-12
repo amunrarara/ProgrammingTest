@@ -28,6 +28,7 @@ public class PlayerMovementController : ParentMovementController
                 if (Physics.Raycast(ray, out hit, 250, walkableArea))
                 {
                     this.agent.SetDestination(hit.point);
+
                 }
             }
         }

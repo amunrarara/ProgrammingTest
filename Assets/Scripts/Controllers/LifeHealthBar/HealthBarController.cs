@@ -12,47 +12,50 @@ using UnityEngine;
 
 public class HealthBarController : ParentBarController
 {
-    private Player player;
-
     // Health properties
-    private int _currentHealth;
-    private int _maxHealth;
+    private float _currentHealth;
+    private float _maxHealth;
+
+    private Player player;
 
     void Awake()
     {
+        // If there is no player assigned, try to find them. If there are still none, throw an error
         if (!player)
         {
-            player = GetComponent<Player>();
-        }
-        if (!player)
-        { 
-            Debug.LogError("ERROR: You haven't assigned a Player to the HealthBarController");
-        }
+            // Later: use error handling before attempting assignment
+            player = transform.parent.GetComponent<Player>();
 
-        // If there are UnitSettings, initalize this Unit's variables with UnitSettings values
-        if (settings)
+            if (!player)
+            {
+                Debug.LogError("ERROR: Cannot locate Parent unit!");
+            }
+        }
+    }
+
+    void Start()
+    {
+        // If there is a player, initalize this Unit's variables with UnitSettings values
+        if (player)
         {
             // Initialize health properties
-            _maxHealth = settings.maxHealth;
+            _maxHealth = player.maxHealth;
             _currentHealth = _maxHealth;
-            previousValue = _currentHealth;
+            Debug.Log(_maxHealth);
         }
     }
 
     void LateUpdate()
     {
+        // Read the Player's currentHealth, then update the healthBar to reflect that value
         _currentHealth = player.currentHealth;
-        if (previousValue != _currentHealth)
-        {
-            DepleteHealthBar();
-            previousValue = _currentHealth;
-        }
+        DepleteHealthBar();
     }
 
     // Adjusts the barObject scale to simulate the depletion of health
     private void DepleteHealthBar()
     {
-        float percentage = _currentHealth / _maxHealth;
-        barObject.transform.localScale = Vector3.Lerp(fullBarScale, emptyBarScale, percentage);
+        float perc = (_currentHealth / _maxHealth) * 4;
+        barObject.transform.localScale = new Vector3(perc, 1.2f, 1.2f);
     }
 }

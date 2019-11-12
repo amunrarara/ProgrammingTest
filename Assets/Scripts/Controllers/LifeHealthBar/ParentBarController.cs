@@ -14,24 +14,14 @@ using UnityEngine;
 public abstract class ParentBarController : MonoBehaviour
 {
     [SerializeField]
-    protected UnitSettings settings;
-
-    [SerializeField]
     protected GameObject barObject;
 
     // These values are Lerp'd between to give the effect of a life bar depleting. In the Start function, these values are determined by the instantiated Prefab's initial scale
     protected Vector3 fullBarScale;
     protected Vector3 emptyBarScale;
 
-    // Placeholder used during LateUpdate to prevent spamming of Deplete functions
-    protected int previousValue;
-
     void Awake()
-    {       // If there is no UnitSettings assigned, try to find them. If there are still none, throw an error
-        if (!settings)
-        {
-            Debug.LogError("ERROR: " + this.gameObject + " does not have UnitSettings!");
-        }
+    {
 
         if (!barObject) {
             Debug.LogError("ERROR: " + this.gameObject + " does not have a barObject object associated with it!");
@@ -41,8 +31,9 @@ public abstract class ParentBarController : MonoBehaviour
     void Start()
     {
         // Initialize the life bar's size vectors
-        fullBarScale = transform.localScale;
-        emptyBarScale = new Vector3(0, fullBarScale.y, fullBarScale.z);
+        fullBarScale = new Vector3(4, 1.2f, 1.2f);
+        emptyBarScale = new Vector3(0, 1.2f, 1.2f);
+        barObject.transform.localScale = fullBarScale;
     }
 
 

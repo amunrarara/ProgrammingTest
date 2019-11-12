@@ -12,7 +12,7 @@ public class EnemyUnit : BaseUnit
 {
     // Lifetime countdown
     public IEnumerator StartCountdown() {
-        while (this._currentLifetime > 0) {
+        while (this._currentLifetime >= 0) {
             yield return new WaitForSeconds(1);
             this._currentLifetime--;
         }

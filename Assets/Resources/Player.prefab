@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6416957830873014366}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.045130104, y: -0.107896805, z: 0.08543491}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 1.2, z: 1.2}
   m_Children: []
   m_Father: {fileID: 6416957832750578158}
@@ -104,7 +104,6 @@ GameObject:
   - component: {fileID: 6416957832125031763}
   - component: {fileID: 6416957832125031765}
   - component: {fileID: 6416957832125031764}
-  - component: {fileID: 6416957832125031769}
   - component: {fileID: 6416957832125031767}
   - component: {fileID: 6416957832125031766}
   m_Layer: 0
@@ -180,20 +179,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6416957832125031769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6416957832125031760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9cdc04b861865647a5e7792785b3e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: feb7c11365c935143ad76707e593923c, type: 2}
-  barObject: {fileID: 6416957830873014366}
 --- !u!65 &6416957832125031767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -328,7 +313,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6416957832641287946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.045130104, y: -0.107896805, z: 0.08543491}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.1, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 6416957832750578158}
@@ -402,6 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6416957832750578158}
+  - component: {fileID: 5074511671621536371}
   m_Layer: 0
   m_Name: BarHierarchy
   m_TagString: Untagged
@@ -425,3 +411,16 @@ Transform:
   m_Father: {fileID: 6416957832125031762}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5074511671621536371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6416957832750578159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9cdc04b861865647a5e7792785b3e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barObject: {fileID: 6416957830873014366}

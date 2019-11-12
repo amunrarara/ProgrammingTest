@@ -14,7 +14,23 @@ public class Player : BaseUnit
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            TakeDamage(collision.gameObject.GetComponent<BaseUnit>().damage);
+            TakeDamage(collision.gameObject.GetComponent<EnemyUnit>().damage);
         }
+    }
+
+    // Called when Player has been damaged by an Enemy
+    public void TakeDamage(int damage)
+    {
+        // If this Unit's current health is greater than the damage it's receiving, then subtract that damage from currentHealth...
+        if (this._currentHealth > damage)
+        {
+            this._currentHealth -= damage;
+        }
+        // ... otherwise, destroy this Unit
+        else
+        {
+            Die();
+        }
+        Debug.Log(currentHealth);
     }
 }
